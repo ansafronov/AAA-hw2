@@ -2,9 +2,15 @@ from typing import List
 
 class CountVectorizer:
     def __init__(self):
+        """
+        Class for transforming text corpus to a number of integers >= 0. Each number in returned sequnce represnts one word, its value account for number of particular wod in a given string.
+        """
         self.unique_words = []
 
     def fit(self, text:str):
+        """
+        Fit string data. Remember all unique words
+        """
         self.unique_words = []
         for string in text:
             arr_string = string.split(" ")
@@ -26,13 +32,22 @@ class CountVectorizer:
         return count_encoded
 
     def fit_transform(self, text: str):
+        """
+        perfrom fit transform for text corpus and return arrays of integer numbers > 0
+        """
         self.fit(text)
         return self.transform(text)
 
     def get_feature_names(self):
+        """
+        Return unique words from fitted corpus
+        """
         return self.unique_words
 
     def _count_words(self, key_word, string):
+        """
+        util function for counting the number of words in a string
+        """
         splitted_string = string.split(" ")
         i = 0
         for word in splitted_string:
